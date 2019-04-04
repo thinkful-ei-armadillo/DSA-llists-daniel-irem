@@ -7,6 +7,12 @@ class _Node {
   }
 }
 
+// ASSIGNMENT
+
+// 1. Create a linked list class
+// Walk through the linked list code in the curriculum and understand it well. 
+// Then write a linked list class and its core functions (insertFirst, insertLast, remove, find) from scratch.
+
 class LinkedList {
   constructor() {
     this.head = null;
@@ -30,30 +36,29 @@ class LinkedList {
   }
 
   find(item) { 
-    // Start at the head
+    // starting the list
     let currNode = this.head;
-    // If the list is empty
+    // if list is empty...
     if (!this.head) {
       return null;
     }
-    // Check for the item 
+    // check for an item
     while (currNode.value !== item) {
-      /* Return null if it's the end of the list 
-           and the item is not on the list */
+      // if it's the end of the list, return null
       if (currNode.next === null) {
         return null;
       }
       else {
-        // Otherwise, keep looking 
+        // or, keep looking...
         currNode = currNode.next;
       }
     }
-    // Found it
+    // found it! return it.
     return currNode;
   }
 
   remove(item){ 
-    // If the list is empty
+    // if empty...
     if (!this.head) {
       return null;
     }
@@ -62,13 +67,13 @@ class LinkedList {
       this.head = this.head.next;
       return;
     }
-    // Start at the head
+    // start at head
     let currNode = this.head;
-    // Keep track of previous
+    // keep track of the last node
     let previousNode = this.head;
 
     while ((currNode !== null) && (currNode.value !== item)) {
-      // Save the previous node 
+      // save the last node
       previousNode = currNode;
       currNode = currNode.next;
     }
@@ -81,17 +86,11 @@ class LinkedList {
 
 }
 
-// ASSIGNMENT
-
-// 1. Create a linked list class
-// Walk through the linked list code in the curriculum and understand it well. 
-// Then write a linked list class and its core functions (insertFirst, insertLast, remove, find) from scratch.
-
-
-
 // 2. Create a singly linked list
 
-// Write a function main. Within the function, using the linked list class above, create a linked list with the name SLL and add the following items to your linked list: Apollo, Boomer, Helo, Husker, Starbuck.
+// Write a function main. Within the function, using the linked list class above, create a linked list 
+// with the name SLL and add the following items to your linked list: 
+// Apollo, Boomer, Helo, Husker, Starbuck.
 // Add Tauhida to the list.
 // Remove squirrel from the list.
 // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key.
@@ -102,7 +101,9 @@ class LinkedList {
 // Using the insertAt() method insert Kat in the 3rd position of the list.
 // Remove Tauhida from the list.
 
-
+function main() {
+  
+}
 
 
 // 3. Supplemental functions for a linked list
