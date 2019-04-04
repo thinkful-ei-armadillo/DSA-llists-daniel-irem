@@ -185,12 +185,15 @@ function main() {
   SLL.remove("Tauhida");
 
   // console.log(JSON.stringify(SLL, null, 2));
-  // display(SLL);
+  display(SLL);
   // console.log(size(SLL.head));
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Hotdog'));
-  console.log(findLast(SLL.head));
-
+  // console.log(findLast(SLL.head));
+  // reverseList(SLL);
+  // console.log(thirdItem(SLL));
+  // console.log(cycle(SLL));
+  console.log(middle(SLL));
 }
 
 main();
@@ -211,22 +214,22 @@ function display(ll) {
   if (!ll.head) {
     return null;
   }
-  while(currentNode !== null){
+  while (currentNode !== null) {
     console.log(currentNode.value);
     currentNode = currentNode.next;
   }
 }
 
-function size(head){
-  if(head.next === null) return 1;
-  return size(head.next)+1;
+function size(head) {
+  if (head.next === null) return 1;
+  return size(head.next) + 1;
 }
 
-function isEmpty(ll){
-  return (ll.head === null);
+function isEmpty(ll) {
+  return ll.head === null;
 }
 
-function findPrevious(ll, target){
+function findPrevious(ll, target) {
   if (!ll.head) {
     console.log("nothing in the list");
     return null;
@@ -249,15 +252,12 @@ function findPrevious(ll, target){
   return previousNode.value;
 }
 
-function findLast(head){
-  if(head.next === null){
+function findLast(head) {
+  if (head.next === null) {
     return head.value;
   }
   return findLast(head.next);
 }
-
-
-
 
 // 4. Mystery program
 // Analyze the following function (without running it in an IDE)
@@ -265,19 +265,30 @@ function findLast(head){
 // What is thetime complexity of this algorithm?
 
 function WhatDoesThisProgramDo(lst) {
+  // points to the current node
   let current = lst.head;
+  //as long as it is not null
   while (current !== null) {
+    //assigns a new node to the current neo
     let newNode = current;
+    // as long as it's not the last node
     while (newNode.next !== null) {
+      // if it's next node's value equals to the current one
       if (newNode.next.value === current.value) {
+        // go to the one after that node
         newNode.next = newNode.next.next;
       } else {
+        // otherwise go to the next node
         newNode = newNode.next;
       }
     }
+    // moves to the next node
     current = current.next;
   }
 }
+
+// the function traverses through the ll to skip over the ones that have the same
+// value.
 
 // 5. Reverse a list
 // Write an algorithm to reverse a linked list.
@@ -287,11 +298,34 @@ function WhatDoesThisProgramDo(lst) {
 // Your program should reverse the direction of a given singly linked list. In other words,
 // all pointers should point backward. BONUS: Solve this problem using both recursive and iterative algorithms.
 
+function reverseList(ll) {
+  let currNode = ll.head;
+  let previousNode = null;
+  let nextNode = null;
+  while (currNode.next !== null) {
+    nextNode = currNode.next;
+    currNode.next = previousNode;
+    previousNode = currNode;
+    currNode = nextNode;
+  }
+  ll.head = previousNode;
+  return ll;
+}
+
 // 6. 3rd from the end
 // Write an algorithm to find the 3rd element from the end of a linked list.
 // Note You may be tempted to add a length property to your linked list class.
 // The length property is not a typical property of linked list, therefore
 // don't make any modification to the linked list class that is provided to you.
+
+function thirdItem(ll) {
+  let currNode = ll.head;
+
+  while (currNode.next.next.next !== null) {
+    currNode = currNode.next;
+  }
+  return currNode.value;
+}
 
 // 7. Middle of a list
 // Write an algorithm to find the middle element
@@ -303,11 +337,36 @@ function WhatDoesThisProgramDo(lst) {
 // using the size() function and dividing it by half will not find the correct middle of the linked list.
 // So, don't use either of these approaches.
 
+function middle(ll) {
+ 
+  let currNode = ll.head;
+  let previousNode = null;
+
+  while (currNode.next !== null) {
+    previousNode = currNode;
+    currNode = currNode.next.next;
+  }
+  return previousNode;
+}
+
 // 8. Cycle in a list
 // Write an algorithm to find whether a linked list has a cycle
 // (i.e., whether a node in the list has its next value pointing to an earlier node in the list).
 // For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in
 // the list so that it has a cycle. Then test your program with a cycleList function.
+
+function cycle(ll) {
+  let currNode = ll.head;
+  let previousNode = null;
+  while (currNode.next !== null) {
+    if (currNode.value === ll.head.value) {
+      console.log("Cycle list in hand");
+    } else {
+      console.log("Not a cycle list");
+    }
+    currNode = currNode.next;
+  }
+}
 
 // 9. Doubly linked list
 // Implement a doubly linked list.
