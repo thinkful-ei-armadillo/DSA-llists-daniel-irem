@@ -35,6 +35,71 @@ class LinkedList {
     }
   }
 
+  insertBefore(value, target) {
+    if (!this.head) {
+      console.log('nothing in the list');
+      return null;
+    }
+    if (this.head.value === target) {
+      this.insertFirst(value);
+    }
+    let previousNode = this.head;
+    let currNode = this.head;
+
+    while ( (currNode !== null) && (currNode.value !== target) ) {
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log('item not found');
+      return;
+    }
+    previousNode.next = new _Node(value, currNode);
+  }
+
+  insertAfter(value, target) {
+    if (!this.head) {
+      console.log('nothing in the list');
+      return null;
+    }
+    
+    let currNode = this.head;
+
+    while ( (currNode !== null) && (currNode.value !== target) ) {
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log('item not found');
+      return;
+    }
+    currNode.next = new _Node(value, currNode.next);
+  }
+
+  insertAt(value, position) {
+    if (!this.head) {
+      console.log('nothing in the list');
+      return null;
+    }
+    
+    let previousNode = this.head;
+    let currNode = this.head;
+
+    // while ( (currNode !== null) && (currNode.value !== target) ) {
+    //   previousNode = currNode;
+    //   currNode = currNode.next;
+    // }
+
+    for ( let i = 0; i < position - 1; i++ ) {
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log('item not found');
+      return;
+    }
+    previousNode.next = new _Node(value, currNode);
+  }
+
   find(item) { 
     // starting the list
     let currNode = this.head;
@@ -102,8 +167,30 @@ class LinkedList {
 // Remove Tauhida from the list.
 
 function main() {
+  const SLL = new LinkedList();
   
+  SLL.insertFirst('Apollo');
+
+  SLL.insertLast('Boomer');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Starbuck');
+
+  SLL.insertLast('Tauhida');
+
+  // SLL.remove('squirrel');
+
+  SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertAfter('Hotdog', 'Helo');
+
+  SLL.insertAt('Kat', 3);
+
+  SLL.remove('Tauhida');  
+
+  console.log(JSON.stringify(SLL, null, 2));
 }
+
+main();
 
 
 // 3. Supplemental functions for a linked list
