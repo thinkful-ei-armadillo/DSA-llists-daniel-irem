@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class _Node {
   constructor(value, next) {
@@ -10,7 +10,7 @@ class _Node {
 // ASSIGNMENT
 
 // 1. Create a linked list class
-// Walk through the linked list code in the curriculum and understand it well. 
+// Walk through the linked list code in the curriculum and understand it well.
 // Then write a linked list class and its core functions (insertFirst, insertLast, remove, find) from scratch.
 
 class LinkedList {
@@ -25,8 +25,7 @@ class LinkedList {
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
-    }
-    else {
+    } else {
       let tempNode = this.head;
       while (tempNode.next !== null) {
         tempNode = tempNode.next;
@@ -37,7 +36,7 @@ class LinkedList {
 
   insertBefore(value, target) {
     if (!this.head) {
-      console.log('nothing in the list');
+      console.log("nothing in the list");
       return null;
     }
     if (this.head.value === target) {
@@ -46,12 +45,12 @@ class LinkedList {
     let previousNode = this.head;
     let currNode = this.head;
 
-    while ( (currNode !== null) && (currNode.value !== target) ) {
+    while (currNode !== null && currNode.value !== target) {
       previousNode = currNode;
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('item not found');
+      console.log("item not found");
       return;
     }
     previousNode.next = new _Node(value, currNode);
@@ -59,17 +58,17 @@ class LinkedList {
 
   insertAfter(value, target) {
     if (!this.head) {
-      console.log('nothing in the list');
+      console.log("nothing in the list");
       return null;
     }
-    
+
     let currNode = this.head;
 
-    while ( (currNode !== null) && (currNode.value !== target) ) {
+    while (currNode !== null && currNode.value !== target) {
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('item not found');
+      console.log("item not found");
       return;
     }
     currNode.next = new _Node(value, currNode.next);
@@ -77,10 +76,10 @@ class LinkedList {
 
   insertAt(value, position) {
     if (!this.head) {
-      console.log('nothing in the list');
+      console.log("nothing in the list");
       return null;
     }
-    
+
     let previousNode = this.head;
     let currNode = this.head;
 
@@ -89,18 +88,18 @@ class LinkedList {
     //   currNode = currNode.next;
     // }
 
-    for ( let i = 0; i < position - 1; i++ ) {
+    for (let i = 0; i < position - 1; i++) {
       previousNode = currNode;
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('item not found');
+      console.log("item not found");
       return;
     }
     previousNode.next = new _Node(value, currNode);
   }
 
-  find(item) { 
+  find(item) {
     // starting the list
     let currNode = this.head;
     // if list is empty...
@@ -112,8 +111,7 @@ class LinkedList {
       // if it's the end of the list, return null
       if (currNode.next === null) {
         return null;
-      }
-      else {
+      } else {
         // or, keep looking...
         currNode = currNode.next;
       }
@@ -122,7 +120,7 @@ class LinkedList {
     return currNode;
   }
 
-  remove(item){ 
+  remove(item) {
     // if empty...
     if (!this.head) {
       return null;
@@ -137,24 +135,23 @@ class LinkedList {
     // keep track of the last node
     let previousNode = this.head;
 
-    while ((currNode !== null) && (currNode.value !== item)) {
+    while (currNode !== null && currNode.value !== item) {
       // save the last node
       previousNode = currNode;
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('Item not found');
+      console.log("Item not found");
       return;
     }
     previousNode.next = currNode.next;
   }
-
 }
 
 // 2. Create a singly linked list
 
-// Write a function main. Within the function, using the linked list class above, create a linked list 
-// with the name SLL and add the following items to your linked list: 
+// Write a function main. Within the function, using the linked list class above, create a linked list
+// with the name SLL and add the following items to your linked list:
 // Apollo, Boomer, Helo, Husker, Starbuck.
 // Add Tauhida to the list.
 // Remove squirrel from the list.
@@ -168,30 +165,35 @@ class LinkedList {
 
 function main() {
   const SLL = new LinkedList();
-  
-  SLL.insertFirst('Apollo');
 
-  SLL.insertLast('Boomer');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Starbuck');
+  SLL.insertFirst("Apollo");
 
-  SLL.insertLast('Tauhida');
+  SLL.insertLast("Boomer");
+  SLL.insertLast("Helo");
+  SLL.insertLast("Husker");
+  SLL.insertLast("Starbuck");
+
+  SLL.insertLast("Tauhida");
 
   // SLL.remove('squirrel');
 
-  SLL.insertBefore('Athena', 'Boomer');
-  SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertBefore("Athena", "Boomer");
+  SLL.insertAfter("Hotdog", "Helo");
 
-  SLL.insertAt('Kat', 3);
+  SLL.insertAt("Kat", 3);
 
-  SLL.remove('Tauhida');  
+  SLL.remove("Tauhida");
 
-  console.log(JSON.stringify(SLL, null, 2));
+  // console.log(JSON.stringify(SLL, null, 2));
+  // display(SLL);
+  // console.log(size(SLL.head));
+  // console.log(isEmpty(SLL));
+  // console.log(findPrevious(SLL, 'Hotdog'));
+  console.log(findLast(SLL.head));
+
 }
 
 main();
-
 
 // 3. Supplemental functions for a linked list
 // Implement the following functions that operate on your linked list class.
@@ -203,13 +205,63 @@ main();
 // isEmpty: finds if the list is empty or not (without using the size() function)
 // findPrevious: finds the node before the item you are looking for
 // findLast: returns the last node in the linked list
+function display(ll) {
+  let currentNode = ll.head;
+  // if empty...
+  if (!ll.head) {
+    return null;
+  }
+  while(currentNode !== null){
+    console.log(currentNode.value);
+    currentNode = currentNode.next;
+  }
+}
+
+function size(head){
+  if(head.next === null) return 1;
+  return size(head.next)+1;
+}
+
+function isEmpty(ll){
+  return (ll.head === null);
+}
+
+function findPrevious(ll, target){
+  if (!ll.head) {
+    console.log("nothing in the list");
+    return null;
+  }
+  if (ll.head.value === target) {
+    console.log("nothing before; you're at head");
+    return;
+  }
+  let previousNode = ll.head;
+  let currNode = ll.head;
+
+  while (currNode !== null && currNode.value !== target) {
+    previousNode = currNode;
+    currNode = currNode.next;
+  }
+  if (currNode === null) {
+    console.log("item not found");
+    return;
+  }
+  return previousNode.value;
+}
+
+function findLast(head){
+  if(head.next === null){
+    return head.value;
+  }
+  return findLast(head.next);
+}
 
 
 
 
 // 4. Mystery program
 // Analyze the following function (without running it in an IDE)
-// to determine what problem it is trying to solve. 
+// to determine what problem it is trying to solve.
 // What is thetime complexity of this algorithm?
 
 function WhatDoesThisProgramDo(lst) {
@@ -219,8 +271,7 @@ function WhatDoesThisProgramDo(lst) {
     while (newNode.next !== null) {
       if (newNode.next.value === current.value) {
         newNode.next = newNode.next.next;
-      }
-      else {
+      } else {
         newNode = newNode.next;
       }
     }
@@ -228,59 +279,49 @@ function WhatDoesThisProgramDo(lst) {
   }
 }
 
-
 // 5. Reverse a list
-// Write an algorithm to reverse a linked list. 
-// The time complexity of your algorithm should be linear (O(n)). 
-// For this exercise, notice we are not asking you just to print the linked list 
-// in reverse or use another linked list to store the value in reverse order. 
-// Your program should reverse the direction of a given singly linked list. In other words, 
+// Write an algorithm to reverse a linked list.
+// The time complexity of your algorithm should be linear (O(n)).
+// For this exercise, notice we are not asking you just to print the linked list
+// in reverse or use another linked list to store the value in reverse order.
+// Your program should reverse the direction of a given singly linked list. In other words,
 // all pointers should point backward. BONUS: Solve this problem using both recursive and iterative algorithms.
 
-
-
 // 6. 3rd from the end
-// Write an algorithm to find the 3rd element from the end of a linked list. 
-// Note You may be tempted to add a length property to your linked list class. 
-// The length property is not a typical property of linked list, therefore 
+// Write an algorithm to find the 3rd element from the end of a linked list.
+// Note You may be tempted to add a length property to your linked list class.
+// The length property is not a typical property of linked list, therefore
 // don't make any modification to the linked list class that is provided to you.
 
-
 // 7. Middle of a list
-// Write an algorithm to find the middle element 
-// of a linked list. Note You may be tempted to 
-// add a length property to your linked list class. 
-// The length property is not a typical property of linked list, 
-// therefore don't make any modification to the linked list class 
-// that is provided to you. Also, finding the size of the linked list 
-// using the size() function and dividing it by half will not find the correct middle of the linked list. 
+// Write an algorithm to find the middle element
+// of a linked list. Note You may be tempted to
+// add a length property to your linked list class.
+// The length property is not a typical property of linked list,
+// therefore don't make any modification to the linked list class
+// that is provided to you. Also, finding the size of the linked list
+// using the size() function and dividing it by half will not find the correct middle of the linked list.
 // So, don't use either of these approaches.
 
-
-
 // 8. Cycle in a list
-// Write an algorithm to find whether a linked list has a cycle 
-// (i.e., whether a node in the list has its next value pointing to an earlier node in the list). 
-// For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in 
+// Write an algorithm to find whether a linked list has a cycle
+// (i.e., whether a node in the list has its next value pointing to an earlier node in the list).
+// For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in
 // the list so that it has a cycle. Then test your program with a cycleList function.
 
-
-
 // 9. Doubly linked list
-// Implement a doubly linked list. 
+// Implement a doubly linked list.
 
-// The primary functions of the doubly linked list would be insert 
+// The primary functions of the doubly linked list would be insert
 // (First, Last, Before, After, and At), remove, and find.
 
-// Write a function mainDLL, and within it create the doubly linked list DLL and add the following items to it: 
+// Write a function mainDLL, and within it create the doubly linked list DLL and add the following items to it:
 // Aquaria, Caprica, Gemenon, Picon, Sagittaron.
 
 // Add Tauron to the list
 // Remove Picon from the list
 
-
 // 10. Reverse a DLL
-// Given the doubly linked list above, 
-// write a program that reverses the doubly linked list. 
+// Given the doubly linked list above,
+// write a program that reverses the doubly linked list.
 // How is this implementation different than reversing the singly linked list?
-
