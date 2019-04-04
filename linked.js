@@ -365,6 +365,7 @@ function findMiddle(ll) {
 function cycle(ll) {
   let currNode = ll.head;
 
+  // i know, i know, it's a while constant -- but I provided a break case that will trigger.
   while (true) {
     currNode = currNode.next;
     if (currNode === null) {
