@@ -192,8 +192,8 @@ function main() {
   // console.log(findLast(SLL.head));
   // console.log(JSON.stringify(reverse(SLL.head), null, 2));
   // console.log(threeEnd(SLL));
-
-  console.log(findMiddle(SLL));
+  // console.log(findMiddle(SLL));
+  console.log(cycle(SLL));
 
 }
 
@@ -362,19 +362,19 @@ function findMiddle(ll) {
 // For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in
 // the list so that it has a cycle. Then test your program with a cycleList function.
 
-// 9. Doubly linked list
-// Implement a doubly linked list.
+function cycle(ll) {
+  let currNode = ll.head;
 
-// The primary functions of the doubly linked list would be insert
-// (First, Last, Before, After, and At), remove, and find.
+  while (true) {
+    currNode = currNode.next;
+    if (currNode === null) {
+      return 'False, the list is not a cycle';
+    }
+    if (currNode.value === ll.head.value) {
+      break;
+    }
+  }
+  return 'The list is a cycle!';
+}
 
-// Write a function mainDLL, and within it create the doubly linked list DLL and add the following items to it:
-// Aquaria, Caprica, Gemenon, Picon, Sagittaron.
 
-// Add Tauron to the list
-// Remove Picon from the list
-
-// 10. Reverse a DLL
-// Given the doubly linked list above,
-// write a program that reverses the doubly linked list.
-// How is this implementation different than reversing the singly linked list?
