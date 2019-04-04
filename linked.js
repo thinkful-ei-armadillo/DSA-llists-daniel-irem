@@ -190,7 +190,10 @@ function main() {
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Hotdog'));
   // console.log(findLast(SLL.head));
-  console.log(JSON.stringify(reverse(SLL.head), null, 2));
+  // console.log(JSON.stringify(reverse(SLL.head), null, 2));
+  // console.log(threeEnd(SLL));
+
+  console.log(findMiddle(SLL));
 
 }
 
@@ -314,7 +317,15 @@ function reverse(head, prev) {
 // The length property is not a typical property of linked list, therefore
 // don't make any modification to the linked list class that is provided to you.
 
+function threeEnd(ll) {
+  let currNode = ll.head;
 
+  while(currNode.next.next.next !== null) {
+    currNode = currNode.next;
+  }
+
+  return currNode.value;
+}
 
 // 7. Middle of a list
 // Write an algorithm to find the middle element
@@ -325,6 +336,25 @@ function reverse(head, prev) {
 // that is provided to you. Also, finding the size of the linked list
 // using the size() function and dividing it by half will not find the correct middle of the linked list.
 // So, don't use either of these approaches.
+
+function findMiddle(ll) {
+  if (!ll.head) {
+    console.log('nada in list');
+    return;
+  }
+
+  const resultArr = [];
+  let currNode = ll.head;
+
+  while (currNode !== null) {
+    resultArr.push(currNode.value);
+    currNode = currNode.next;
+  }
+
+  const middleNode = Math.floor(resultArr.length / 2);
+
+  return resultArr[middleNode];
+}
 
 // 8. Cycle in a list
 // Write an algorithm to find whether a linked list has a cycle
