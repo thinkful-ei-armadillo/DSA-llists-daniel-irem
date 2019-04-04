@@ -340,13 +340,13 @@ function thirdItem(ll) {
 function middle(ll) {
  
   let currNode = ll.head;
-  let previousNode = null;
+  let previousNode = ll.head.next.next;
 
-  while (currNode.next !== null) {
-    previousNode = currNode;
-    currNode = currNode.next.next;
+  while (previousNode !== null) {
+    currNode = currNode.next;
+    previousNode = previousNode.next ? previousNode.next.next : null;
   }
-  return previousNode;
+  return currNode;
 }
 
 // 8. Cycle in a list
