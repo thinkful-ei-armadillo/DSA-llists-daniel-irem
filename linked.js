@@ -189,7 +189,8 @@ function main() {
   // console.log(size(SLL.head));
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Hotdog'));
-  console.log(findLast(SLL.head));
+  // console.log(findLast(SLL.head));
+  console.log(JSON.stringify(reverse(SLL.head), null, 2));
 
 }
 
@@ -256,25 +257,35 @@ function findLast(head){
   return findLast(head.next);
 }
 
-
-
-
 // 4. Mystery program
 // Analyze the following function (without running it in an IDE)
 // to determine what problem it is trying to solve.
-// What is thetime complexity of this algorithm?
+// What is the time complexity of this algorithm?
+
+// A:
+// this function is looping through the list, checking each current node's value for sameness to the next node,
+// then if it is the same, skipping forward past it and then continuing. if it is not the same, it just goes to the next node. 
+// however, there is no return value, so it will only print undefined if logged to console. it essentially does nothing but
+// traverse the linked list.
+// time complexity is O(n^2) due to nested loops
 
 function WhatDoesThisProgramDo(lst) {
+  // sets pointer to current node
   let current = lst.head;
+  // loop runs while the current value/node is not null
   while (current !== null) {
+    //assigns newNode to current node
     let newNode = current;
+    // loop runs while the next node's value is not null
     while (newNode.next !== null) {
+      // if the current node's value is equal to the next node's value, go to the following node.
       if (newNode.next.value === current.value) {
         newNode.next = newNode.next.next;
       } else {
         newNode = newNode.next;
       }
     }
+    // move through the list
     current = current.next;
   }
 }
@@ -287,11 +298,23 @@ function WhatDoesThisProgramDo(lst) {
 // Your program should reverse the direction of a given singly linked list. In other words,
 // all pointers should point backward. BONUS: Solve this problem using both recursive and iterative algorithms.
 
+function reverse(head, prev) {
+  if (head.next === null) {
+    head.next = prev;
+    return head;
+  }
+  const result = reverse(head.next, head);
+  head.next = prev;
+  return result;
+}
+
 // 6. 3rd from the end
 // Write an algorithm to find the 3rd element from the end of a linked list.
 // Note You may be tempted to add a length property to your linked list class.
 // The length property is not a typical property of linked list, therefore
 // don't make any modification to the linked list class that is provided to you.
+
+
 
 // 7. Middle of a list
 // Write an algorithm to find the middle element
