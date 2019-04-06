@@ -185,7 +185,7 @@ function main() {
   SLL.remove("Tauhida");
 
   // console.log(JSON.stringify(SLL, null, 2));
-  display(SLL);
+  // display(SLL);
   // console.log(size(SLL.head));
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Hotdog'));
@@ -193,7 +193,8 @@ function main() {
   // reverseList(SLL);
   // console.log(thirdItem(SLL));
   // console.log(cycle(SLL));
-  console.log(middle(SLL));
+  // console.log(middle(SLL));
+  console.log(cycle(SLL));
 }
 
 main();
@@ -357,15 +358,15 @@ function middle(ll) {
 
 function cycle(ll) {
   let currNode = ll.head;
-  let previousNode = null;
-  while (currNode.next !== null) {
-    if (currNode.value === ll.head.value) {
-      console.log("Cycle list in hand");
-    } else {
-      console.log("Not a cycle list");
-    }
-    currNode = currNode.next;
+  let previousNode = ll.head;
+  if(previousNode.next === currNode) {
+    return true;
   }
+  while (previousNode.next !== currNode) {
+    previousNode.next = previousNode.next.next;
+    currNode =currNode.next; 
+  }
+  return false;
 }
 
 // 9. Doubly linked list
